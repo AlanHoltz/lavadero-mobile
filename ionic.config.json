@@ -1,0 +1,7 @@
+{
+  "name": "Lavadero",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
