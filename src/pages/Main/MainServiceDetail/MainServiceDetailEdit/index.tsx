@@ -40,7 +40,6 @@ const MainServiceDetailEdit: React.FC<MainServiceDetailEditProps> = (props) => {
                 color: "success",
 
             });
-            console.log("-------------------------------------");
             props.setEditServiceModal(false);
         }
         catch (err: any) {

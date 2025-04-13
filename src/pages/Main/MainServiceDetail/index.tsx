@@ -32,9 +32,6 @@ const MainServiceDetails: React.FC = () => {
     const [editServiceModal, setEditServiceModal] = useState(false);
     const [workDay, setWorkDay] = useState<any>(null);
 
-
-    console.log("REAL: ", employeeEarnings);
-
     useIonViewWillEnter(() => {
         (async function () {
             await initialFetch();
@@ -55,7 +52,6 @@ const MainServiceDetails: React.FC = () => {
             };
             setService({ ...fetchedService });
             const fetchedEmployeeEarnings: any = await employeeEarningsController.getEmployeeEarningsByServiceType(fetchedService.service_type_name, db);
-            console.log("FETCHED: ", fetchedEmployeeEarnings);
             setEmployeeEarnings([...fetchedEmployeeEarnings])
             const wD = await workDaysController.getWorkDay(new Date(), db);
             setWorkDay(wD ? { ...wD } : null);
