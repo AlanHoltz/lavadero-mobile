@@ -34,18 +34,31 @@ const Configuration: React.FC = () => {
                 multiple: false,
             });
 
-            const filePath = result.files[0].path;
+            const file = result.files[0];
 
-            if (!filePath) return;
+            if (!file) return;
+
+            if (!file.path && !file.blob) throw Error;
 
             setLoading(true);
 
-            const contents = await Filesystem.readFile({
-                path: filePath ?? "",
-                encoding: Encoding.UTF8,
-            });
+            let fileData;
 
-            await importDatabase(contents.data);
+            if (file.path) {
+                fileData = await Filesystem.readFile({
+                    path: file.path,
+                    encoding: Encoding.UTF8,
+                });
+            } else if (file.blob) {
+                fileData = await new Promise<string>((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result as string);
+                    reader.onerror = reject;
+                    reader.readAsText(file.blob as Blob, 'utf-8');
+                });
+            };
+
+            await importDatabase(fileData);
 
             await presentToast({
                 message: "Base de Datos importada correctamente",
@@ -56,7 +69,14 @@ const Configuration: React.FC = () => {
             });
         }
         catch (err: any) {
+            if (err.message === "pickFiles canceled.") return;
+            await presentToast({
+                message: `No se ha podido importar correctamente la base de datos: ${err}`,
+                duration: 1500,
+                position: "top",
+                color: "danger",
 
+            });
         }
         finally {
             setLoading(false);
@@ -84,7 +104,13 @@ const Configuration: React.FC = () => {
 
             });
         } catch (err: any) {
-            
+            await presentToast({
+                message: `No se ha podido exportar correctamente la base de datos: ${err}`,
+                duration: 1500,
+                position: "top",
+                color: "danger",
+
+            });
         }
         finally {
             await sqlite.closeConnection("Lavadero");
