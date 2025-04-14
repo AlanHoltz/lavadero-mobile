@@ -17,15 +17,31 @@ const Configuration: React.FC = () => {
     const history = useHistory();
 
     const resetDB = async () => {
-        await deleteDatabase();
-        await createDatabaseIfNotExists();
-        await presentToast({
-            message: "Sistema reestablecido de fábrica con éxito",
-            duration: 1500,
-            position: "top",
-            color: "success",
+        try {
+            setLoading(true);
+            await deleteDatabase();
+            await createDatabaseIfNotExists();
+            await presentToast({
+                message: "Sistema reestablecido de fábrica con éxito",
+                duration: 1500,
+                position: "top",
+                color: "success",
 
-        });
+            });
+
+        }
+        catch (err: any) {
+            await presentToast({
+                message: `No se ha podido reiniciar correctamente la base de datos: ${err}`,
+                duration: 1500,
+                position: "top",
+                color: "danger",
+
+            });
+        }
+        finally {
+            setLoading(false);
+        };
     };
 
     const onImportClick = async () => {
