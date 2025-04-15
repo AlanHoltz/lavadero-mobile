@@ -38,7 +38,7 @@ const HistoryDay: React.FC<HistoryDayProps> = (props) => {
             const workDay = await workDaysController.getWorkDay(date, db);
             if (!workDay) {
                 setNoWorkDate(true);
-                return await sqlite.closeConnection("Lavadero");
+                return;
             };
             const workDayEarningsByServiceTypes = await workDayEarningsByServiceTypesController.getWorkDayEarningsByServiceTypes(date, db);
             const workDayEmployeeEarnings = await workDayEmployeeEarningsController.getEmployeeEarningsByDate(date, db);
