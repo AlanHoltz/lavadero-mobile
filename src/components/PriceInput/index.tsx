@@ -17,7 +17,7 @@ const PriceInput: React.FC<PriceInputProps> = (props) => {
     const [formattedPrice, setFormattedPrice] = useState<string | null>(props.price ? formatNumber(props.price) : null);
 
     return (
-        <IonItem className={`ion-margin-bottom ion-no-padding ${props.error && "ion-invalid"} main_new_service_special_input`}>
+        <IonItem className={`ion-margin-bottom ion-no-padding ${props.error && "ion-invalid"} main-new-service-special-input`}>
             <IonLabel color="primary" position="stacked">{props.label}</IonLabel>
             <IonInput inputMode='numeric' value={formattedPrice}
                 onIonBlur={props.onBlur}

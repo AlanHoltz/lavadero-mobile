@@ -1,4 +1,4 @@
-.service_type_input::before{
+.service-type-input::before{
     content: "Vehículo";
     margin-right: 4px;
 }

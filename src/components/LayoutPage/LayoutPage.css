@@ -1,3 +1,9 @@
-.lavadero_title{
+ion-title.lavadero-title {
     font-family: streetwear;
+    padding-left: 10px;
+    line-height: 2;
+}
+
+ion-icon.btn-back-icon {
+    font-size: 1.55rem;
 }

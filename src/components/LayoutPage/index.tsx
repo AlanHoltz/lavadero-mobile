@@ -26,14 +26,14 @@ const LayoutPage: React.FC<LayoutPageProps> = (props) => {
                     {props.allowGoBack && <IonButtons slot='start'>
                         {props.onBackButtonClick ?
                             <IonButton onClick={props.onBackButtonClick}>
-                                <IonIcon style={{ fontSize: "24px" }} icon={arrowBack} />
+                                <IonIcon class="btn-back-icon" icon={arrowBack} />
                             </IonButton>
                             :
                             <IonBackButton defaultHref='#' />
                         }
 
                     </IonButtons>}
-                    <IonTitle style={{paddingLeft:"10px"}} className={`ion-no-padding ${!props.title ? "lavadero_title" : ""}`}>
+                    <IonTitle className={`ion-no-padding ${!props.title ? "lavadero-title" : ""}`}>
                         {props.title ?? "Lavadero Ave Fénix"}
                     </IonTitle>
                 </IonToolbar>

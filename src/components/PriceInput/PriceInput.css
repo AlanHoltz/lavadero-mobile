@@ -1,4 +1,4 @@
-.main_new_service_special_input ion-input::before{
+.main-new-service-special-input ion-input::before{
     content: "$ " !important;
     margin-right: 4px;
 }

@@ -40,7 +40,7 @@ const ServiceTypeForm: React.FC<ServiceTypeFormProps> = (props) => {
             <IonItem className={`ion-margin-bottom ion-no-padding ${!props.serviceTypeData.name.isValid && props.serviceTypeData.name.isTouched && "ion-invalid"}`}>
                 <IonLabel color="primary" position="stacked">Nombre de Tipo de Servicio</IonLabel>
                 <IonInput
-                    className="service_type_input"
+                    className="service-type-input"
                     value={props.serviceTypeData.name.value}
                     onIonBlur={(e) => {
                         const sTDCpy = deepClone(props.serviceTypeData);
